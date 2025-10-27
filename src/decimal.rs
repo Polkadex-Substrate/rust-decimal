@@ -106,7 +106,7 @@ pub struct UnpackedDecimal {
 /// The finite set of values of type `Decimal` are of the form m / 10<sup>e</sup>,
 /// where m is an integer such that -2<sup>96</sup> < m < 2<sup>96</sup>, and e is an integer
 /// between 0 and 28 inclusive.
-#[derive(Clone, Copy, Decode, Encode, TypeInfo, MaxEncodedLen, DecodeWithMemTracking)]
+#[derive(Clone, Copy)]
 #[cfg_attr(
     all(feature = "diesel1", not(feature = "diesel2")),
     derive(FromSqlRow, AsExpression),
@@ -127,7 +127,7 @@ pub struct UnpackedDecimal {
 #[cfg_attr(feature = "rkyv-safe", archive_attr(derive(bytecheck::CheckBytes)))]
 #[cfg_attr(
 feature = "scale-codec",
-derive(Decode, Encode, TypeInfo, MaxEncodedLen, DecodeWithMemTracking),
+derive(Decode, Encode, TypeInfo, MaxEncodedLen),
 )]
 pub struct Decimal {
     // Bits 0-15: unused
