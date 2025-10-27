@@ -93,7 +93,7 @@ const NEGATIVE_ONE: Decimal = Decimal {
 
 /// `UnpackedDecimal` contains unpacked representation of `Decimal` where each component
 /// of decimal-format stored in it's own field
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, DecodeWithMemTracking)]
 pub struct UnpackedDecimal {
     pub negative: bool,
     pub scale: u32,
@@ -127,7 +127,7 @@ pub struct UnpackedDecimal {
 #[cfg_attr(feature = "rkyv-safe", archive_attr(derive(bytecheck::CheckBytes)))]
 #[cfg_attr(
 feature = "scale-codec",
-derive(Decode, Encode, TypeInfo, MaxEncodedLen),
+derive(Decode, Encode, TypeInfo, MaxEncodedLen, DecodeWithMemTracking),
 )]
 pub struct Decimal {
     // Bits 0-15: unused
